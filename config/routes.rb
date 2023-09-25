@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
 
- root to: "homes#top"
+ root to: "public/homes#top"
 
 
 get 'items' => 'public/items#index'
 
  namespace :admin do
    resources :items
-   get 'items' => 'admin/items#index'
+   resources :customers
+   get 'admin/orders/:id' => 'admin/orders#show'
+ end
+
+ namespace :customer do
+   resources :customers
+   resources :cart_items
+   resources :orders
  end
 
   # 顧客用
@@ -23,9 +30,9 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
   sessions: "admin/sessions",
 }
 
- get 'home/about' , to: 'homes#about' , as: 'about'
-
-
+ get 'public/home/about' , to: 'homes#about' , as: 'about'
+ get 'admin'=> 'admin/homes#top'
+ get '/customers/current_customer' => 'public/customers#show'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

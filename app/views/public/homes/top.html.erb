@@ -1,0 +1,42 @@
+ <body>
+  <header>
+    　　<%= link_to "About", about_path , class: 'btn btn-default' %>
+        <%= link_to "商品一覧", items_path , class: 'btn btn-default' %>
+        <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default' %>
+         <% if customer_signed_in? %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+        <% else %>
+        <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
+        <% end %>
+  </header>
+
+  <main>
+
+    <main-visual>
+      <p>ようこそ、ながのCAKEへ！<br/>
+      このサイトは、ケーキ販売のECサイトになります。<br/>
+      会員でない方も商品の閲覧はできますが、<br/>
+      購入には会員登録が必要になります。<br/>
+      </p>
+    </main-visual>
+
+    <new-items>
+      <h3>新着商品</h3>
+      <!--Bootstrapで縦並びにする-->
+      <table class="table">
+        <tbody>
+          <tr>
+            <th>新着商品画像</th>
+            <th>商品名</th>
+            <th>価格</th>
+          </tr>
+        </tbody>
+      </table>
+
+    </new-items>
+
+
+  </main>
+
+
+ </body>
