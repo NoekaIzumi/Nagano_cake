@@ -1,6 +1,30 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+
+  def after_sign_up_path_for(resource)
+    customer_items_path
+  end
+
+  def create
+  @customer = Customer.new(customer_params)
+
+  if @customer.save
+    # Redirect to a confirmation page or other appropriate action.
+    redirect_to items_path
+  else
+    render :new
+  end
+  end
+
+private
+
+def customer_params
+  params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
+    :email, :postal_code, :address, :telephone_number,
+    :password, :password_confirmation,
+    :is_deleted)
+end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
@@ -58,5 +82,5 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
-  # end
+  #end
 end

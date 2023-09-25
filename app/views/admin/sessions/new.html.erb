@@ -1,30 +1,22 @@
 <body>
   <header>
-      <li>
-        <%= link_to "About", about_path %>
-      </li>
-      <li>
-        <%= link_to "商品一覧", items_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
+        <button onclick= about_path %>About</button>
+        <button onclick= items_path %>商品一覧</button>
+        <button onclick= new_customer_registration_path %>新規登録</button>
+        <button onclick= new_customer_session_path %>ログイン</button>
   </header>
 
   <main>
-    <h2>Log in</h2>
+    <h2>管理者ログイン</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :メールアドレス %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
     <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :パスワード %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
     </div>
 
@@ -36,7 +28,7 @@
     <% end %>
 
     <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "   ログイン   " , class: "btn btn-primary"%>
     </div>
     <% end %>
     <%= render "admin/shared/links" %>
