@@ -33,6 +33,7 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
  get 'public/home/about' , to: 'homes#about' , as: 'about'
  get 'admin'=> 'admin/homes#top'
  get '/customers/current_customer' => 'public/customers#show'
+ get '/customers/current_customer/edit' => 'public/customers#edit'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

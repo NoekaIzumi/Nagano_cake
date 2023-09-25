@@ -1,8 +1,7 @@
 <body>
   <header>
-
-
-
+        
+        
     　　<%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
         <%= link_to "商品一覧", items_path , class: 'btn btn-default' %>
         <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
@@ -22,7 +21,7 @@
 
     <table class="table">
       <h2>登録情報</h2>
-      <%= link_to '編集する', edit_customer_customer_path(current_customer),class: "btn btn-success" %>
+      <%= link_to '編集する', customers_current_customer_edit_path(current_customer), class: "btn btn-success" %>
 
 		<tr>
 			<th>氏名</th>
