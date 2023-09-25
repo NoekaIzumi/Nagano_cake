@@ -1,0 +1,63 @@
+<body>
+  <header>
+
+
+
+    　　<%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
+        <%= link_to "商品一覧", items_path , class: 'btn btn-default' %>
+        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+
+
+        <p>ようこそ
+        <%= @customer.last_name %>
+				<%= @customer.first_name %>
+				さん！</p>
+
+
+  </header>
+
+  <main>
+    <h2>マイページ</h2>
+
+    <table class="table">
+      <h2>登録情報</h2>
+      <%= link_to '編集する', edit_customer_customer_path(current_customer),class: "btn btn-success" %>
+
+		<tr>
+			<th>氏名</th>
+			<td><%= @customer.last_name %>
+				<%= @customer.first_name %>
+			</td>
+		</tr>
+		<tr>
+			<th>カナ</th>
+			<td><%= @customer.last_name_kana %>
+				<%= @customer.first_name_kana %>
+			</td>
+		</tr>
+		<tr>
+			<th>郵便番号</th>
+			<td><%= @customer.postal_code %></td>
+		</tr>
+		<tr>
+			<th>住所</th>
+			<td><%= @customer.address %></td>
+		</tr>
+		<tr>
+			<th>電話番号</th>
+			<td><%= @customer.telephone_number %></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<td><%= @customer.email %></td>
+		</tr>
+		</table>
+		<h2>注文履歴</h2>
+		<%= link_to '一覧を見る',customer_orders_path,class: "btn btn-primary" %>
+
+
+
+
+  </main>
+</body>

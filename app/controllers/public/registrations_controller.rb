@@ -2,22 +2,12 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
 
-  def after_sign_up_path_for(resource)
-    root_path
-  end
-
-  def after_sign_out_path_for(resource)
-    root_path
-  end
-  
-  
-
   def create
   @customer = Customer.new(customer_params)
 
   if @customer.save
     # Redirect to a confirmation page or other appropriate action.
-    redirect_to root_path
+    redirect_to customers_current_customer_path
   else
     render :new
   end
