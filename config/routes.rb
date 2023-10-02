@@ -35,5 +35,12 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
  get '/customers/current_customer' => 'public/customers#show'
  get '/customers/current_customer/edit' => 'public/customers#edit'
 
+
+  # 退会確認画面
+ get  '/customers/check' => 'customers#check'
+ # 論理削除用のルーティング
+ get '/customers/confirm_withdraw' => 'public/customers#confirm_withdraw'
+ patch  '/customers/withdraw' => 'public/customers#withdraw'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
