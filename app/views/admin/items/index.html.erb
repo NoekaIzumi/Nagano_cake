@@ -1,18 +1,34 @@
 <body>
     <% if admin_signed_in? %>
         <header>
-          <li>
             <%= link_to "About", about_path %>
-          </li>
-          <li>
             <%= link_to "商品一覧", admin_items_path %>
-          </li>
-          <li>
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-          </li>
         </henader>
     <% end %>
     <main>
-      <h2>商品一覧a</h2>
+      <h2>商品一覧</h2>
+      
+      <table class = "table">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜き価格</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.price %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        
+      </table>
+      
+      
     </main>
 </body>

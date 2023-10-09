@@ -1,0 +1,23 @@
+<body>
+
+  <header>
+    <%= link_to "商品一覧", admin_items_path %></li>
+    <%= link_to "会員一覧", admin_customers_path %></li>
+    <%= link_to "注文履歴一覧", admin_orders_path %></li>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+  </henader>
+
+  <main>
+    <h2>商品詳細</h2>
+
+    <main-visual>
+
+    </main-visual>
+
+    <main-content>
+      <%= @item.name %>
+      <%= @item.introduction %>
+      <%= @item.price %>
+    </main-content>
+  </main>
+</body>

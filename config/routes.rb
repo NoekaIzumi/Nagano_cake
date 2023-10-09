@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
- root to: "public/homes#top"
+ root  "public/homes#top"
 
 
 get 'items' => 'public/items#index'
@@ -8,7 +8,7 @@ get 'items' => 'public/items#index'
  namespace :admin do
    resources :items
    resources :customers
-   get 'admin/orders/:id' => 'admin/orders#show'
+   resources :orders
  end
 
  namespace :customer do
@@ -30,7 +30,7 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
   sessions: "admin/sessions",
 }
 
- get 'public/home/about' , to: 'homes#about' , as: 'about'
+ get 'public/home/about' , to: 'public/homes#about' , as: 'about'
  get 'admin'=> 'admin/homes#top'
  get '/customers/current_customer' => 'public/customers#show'
  get '/customers/current_customer/edit' => 'public/customers#edit'
