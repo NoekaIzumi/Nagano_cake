@@ -1,20 +1,45 @@
 <body>
 
   <header>
-    <%= link_to "商品一覧", admin_items_path %>
-    <%= link_to "会員一覧", admin_customers_path %>
-    <%= link_to "注文履歴一覧", admin_orders_path %>
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+    <%= link_to "商品一覧", admin_items_path,class: 'btn btn-default' %>
+    <%= link_to "会員一覧", admin_customers_path,class: 'btn btn-default' %>
+    <%= link_to "注文履歴一覧", admin_path,class: 'btn btn-default' %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
   </header>
 
+<style>
 
-    <h2>商品詳細</h2>
 
-    <main-visual>
-      <%= image_tag @item.image ,size: "300x300" %>
-    </main-visual>
 
-    <main>
+  .item-box{
+    display:flex;
+  }
+  .main-visual{
+    margin:50px;
+    margin-top:20px;
+    justify-content: center;
+  }
+
+
+   .button{
+    justify-content: center;
+  }
+
+
+
+
+</style>
+
+
+
+<div class ="container">
+   <h3>商品詳細</h3>
+  <div class = "item-box">
+    <div class ="main-visual">
+      <%= image_tag @item.image ,size: "300x250" %>
+    </div>
+
+    <div class ="main">
       <table class = "table">
         <tr>
         　<th>商品名</th> <td><%= @item.name %></td>
@@ -26,9 +51,12 @@
           <th>税込価格</th>
         </tr>
         <tr>
-          <th>税抜き価格</th> <td><%= @item.price %></td>
+          <th>税抜き価格</th> <td>¥<%= @item.price %></td>
         </tr>
       </table>
-    </main>
-
-    <%= link_to  '  編集する  ', edit_admin_item_path, class: "btn btn-success" %>
+    </div>
+  </div>
+ <div class = "button">
+         <%= link_to  '  編集する  ', edit_admin_item_path, class: "btn btn-success" %>
+ </div>
+</div>

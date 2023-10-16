@@ -2,9 +2,6 @@ Rails.application.routes.draw do
 
  root  "public/homes#top"
 
-
-get 'items' => 'public/items#index'
-
  namespace :admin do
    resources :items
    resources :customers
@@ -15,6 +12,7 @@ get 'items' => 'public/items#index'
    resources :customers
    resources :cart_items
    resources :orders
+   resources :items,only: [:index, :show]
  end
 
   # 顧客用
@@ -32,8 +30,8 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
 
  get 'public/home/about' , to: 'public/homes#about' , as: 'about'
  get 'admin'=> 'admin/homes#top'
- get '/customers/current_customer' => 'public/customers#show'
- get '/customers/current_customer/edit' => 'public/customers#edit'
+ get '/customers/current_customer' => 'customer/customers#show'
+ get '/customers/current_customer/edit' => 'customer/customers#edit'
 
 
   # 退会確認画面
