@@ -1,23 +1,34 @@
 <body>
 
   <header>
-    <%= link_to "商品一覧", admin_items_path %></li>
-    <%= link_to "会員一覧", admin_customers_path %></li>
-    <%= link_to "注文履歴一覧", admin_orders_path %></li>
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
-  </henader>
+    <%= link_to "商品一覧", admin_items_path %>
+    <%= link_to "会員一覧", admin_customers_path %>
+    <%= link_to "注文履歴一覧", admin_orders_path %>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+  </header>
 
-  <main>
+
     <h2>商品詳細</h2>
 
     <main-visual>
-
+      <%= image_tag @item.image ,size: "300x300" %>
     </main-visual>
 
-    <main-content>
-      <%= @item.name %>
-      <%= @item.introduction %>
-      <%= @item.price %>
-    </main-content>
-  </main>
-</body>
+    <main>
+      <table class = "table">
+        <tr>
+        　<th>商品名</th> <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th><td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+          <th>税込価格</th>
+        </tr>
+        <tr>
+          <th>税抜き価格</th> <td><%= @item.price %></td>
+        </tr>
+      </table>
+    </main>
+
+    <%= link_to  '  編集する  ', edit_admin_item_path, class: "btn btn-success" %>

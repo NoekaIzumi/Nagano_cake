@@ -8,7 +8,7 @@
     <% end %>
     <main>
       <h2>商品一覧</h2>
-      
+
       <table class = "table">
         <thead>
           <tr>
@@ -17,18 +17,19 @@
             <th>税抜き価格</th>
           </tr>
         </thead>
-        
+
         <tbody>
           <% @items.each do |item| %>
           <tr>
-            <td><%= item.name %></td>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
             <td><%= item.price %></td>
           </tr>
           <% end %>
         </tbody>
-        
+
       </table>
-      
-      
+
+
     </main>
 </body>
