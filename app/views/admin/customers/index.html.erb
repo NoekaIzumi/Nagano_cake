@@ -1,0 +1,56 @@
+  <header>
+
+        <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+        <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+        <%= link_to "注文一覧", admin_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+  </header>
+
+  <style>
+
+     .conateiner{
+       display:flex;
+     }
+     .table{
+       margin:auto
+     }
+
+     .pagenation{
+      justify-content: center;
+     }
+
+  </style>
+
+<h3>会員一覧</h3>
+<div class= "container" >
+
+  <div class = "table">
+  <table class= "table">
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= link_to admin_customer_path(customer) do %>
+              <%= customer.last_name %><%= customer.first_name %>
+            <% end %>
+          </td>
+        <td><%= customer.email %></td>
+        <td><%= customer.is_deleted %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class ="pagenation">
+   <%= paginate @customers %>
+  </div>
+</div>
