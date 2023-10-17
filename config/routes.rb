@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :users
  root  "public/homes#top"
 
  namespace :admin do

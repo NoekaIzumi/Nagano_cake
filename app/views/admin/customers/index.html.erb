@@ -23,7 +23,7 @@
 
 <h3>会員一覧</h3>
 <div class= "container" >
-
+ <%= form_for @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
   <div class = "table">
   <table class= "table">
     <thead>
