@@ -1,0 +1,57 @@
+<header>
+  <%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
+  <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+  <%= link_to "カート",  customer_cart_items_path, class: 'btn btn-default' %>
+  <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+</header>
+
+<style>
+
+
+
+  .item-box{
+    display:flex;
+  }
+  .main-visual{
+    margin:50px;
+    margin-top:20px;
+    justify-content: center;
+  }
+
+
+   .button{
+    justify-content: center;
+  }
+
+
+
+
+</style>
+
+
+
+<div class ="container">
+  <div class = "item-box">
+    <div class ="main-visual">
+      <%= image_tag @item.image ,size: "300x250" %>
+    </div>
+
+    <div class ="main">
+      <table class = "table">
+        <tr>
+        　<td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <td><%= @item.introduction %></td>
+        </tr>
+        <tr>
+        <td>¥<%= @item.price %>(税込)</td>
+        </tr>
+      </table>
+      <div class = "button">
+         <%= link_to  '  カートに入れる  ', customer_cart_items_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+
+</div>

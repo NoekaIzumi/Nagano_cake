@@ -17,8 +17,9 @@ class Customer::CustomersController < ApplicationController
 		else
 			render :edit
 		end
+	end
 
-  end
+
 
   def confirm_withdraw
     @customer = Customer.find(current_customer.id)
