@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+ devise_for :customers, skip: [:passwords],controllers: {
+  registrations: "customer/registrations",
+  sessions: "customer/sessions"
+}
+
+# 管理者用
+# URL /admin/sign_in ...
+devise_for :admin, skip: [:registrations, :passwords],controllers: {
+  sessions: "admin/sessions",
+}
+
  root  "public/homes#top"
 
  namespace :admin do
@@ -17,21 +28,15 @@ Rails.application.routes.draw do
 
   # 顧客用
 # URL /customers/sign_in ...
-devise_for :customers, skip: [:passwords],controllers: {
-  registrations: "customer/registrations",
-  sessions: "customer/sessions"
-}
 
-# 管理者用
-# URL /admin/sign_in ...
-devise_for :admin, skip: [:registrations, :passwords],controllers: {
-  sessions: "admin/sessions",
-}
 
  get 'public/home/about' , to: 'public/homes#about' , as: 'about'
  get 'admin'=> 'admin/homes#top'
  get '/customers/current_customer' => 'customer/customers#show'
  get '/customers/current_customer/edit' => 'customer/customers#edit'
+
+ get '/customers/sign_in' => 'customer/sessions#new'
+ get '/customers/sign_up' => 'customer/registration#new'
 
 
   # 退会確認画面

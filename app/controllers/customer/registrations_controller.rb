@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Public::RegistrationsController < Devise::RegistrationsController
+class Customer::RegistrationsController < Devise::RegistrationsController
 
   def create
   @customer = Customer.new(customer_params)

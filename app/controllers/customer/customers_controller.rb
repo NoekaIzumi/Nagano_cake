@@ -1,5 +1,6 @@
 class Customer::CustomersController < ApplicationController
 
+
   before_action :authenticate_customer!, only: [:show, :edit]
 
   def show
@@ -19,6 +20,14 @@ class Customer::CustomersController < ApplicationController
 		end
 	end
 
+	def new
+	 @customer = Customer.new
+	end
+
+	def create
+	 @customer = Customer.new(customer_params)
+   @customer.save
+	end
 
 
   def confirm_withdraw
@@ -37,7 +46,7 @@ class Customer::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:email,:password)
+    params.require(:customer).permit(:email)
   end
 
 end
