@@ -21,7 +21,12 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
 
  namespace :customer do
    resources :customers
-   resources :cart_items
+   resources :cart_items, only: [:index, :create, :destroy,:update] do
+     member do
+       patch 'increase'
+       patch 'decrease'
+     end
+   end
    resources :orders
    resources :items,only: [:index, :show]
  end
@@ -38,6 +43,8 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
  get '/customers/sign_in' => 'customer/sessions#new'
  get '/customers/sign_up' => 'customer/registration#new'
 
+ #カート内商品全削除
+ delete '/customer/cart_items' => 'customer/cart_items#destroy_all'
 
   # 退会確認画面
  get  '/customers/check' => 'customers#check'

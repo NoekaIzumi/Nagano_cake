@@ -5,12 +5,16 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
+
+  has_many :cart_items, dependent: :destroy
+
   def customer_status
     if is_deleted == true
       "退会"
     else
       "有効"
     end
+
   end
 
   # is_deletedがfalseならtrueを返すようにしている

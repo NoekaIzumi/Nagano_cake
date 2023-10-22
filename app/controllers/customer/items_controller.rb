@@ -8,13 +8,15 @@ class Customer::ItemsController < ApplicationController
   def show
    @item = Item.find(params[:id])
    @customer = Customer.find(current_customer.id)
+   @cart_item = CartItem.new
+
   end
 
 
 private
 
   def item_params
-    params.require(:item).permit(:name, :image, :introduction,:price)
+    params.require(:item).permit(:name, :image, :introduction,:price,:amount)
   end
 
 

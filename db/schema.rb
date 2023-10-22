@@ -53,13 +53,13 @@ ActiveRecord::Schema.define(version: 2023_10_09_172135) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.integer "item_id_id", null: false
-    t.integer "customer_id_id", null: false
-    t.integer "amount", null: false
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "amount", default: 1, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id_id"], name: "index_cart_items_on_customer_id_id"
-    t.index ["item_id_id"], name: "index_cart_items_on_item_id_id"
+    t.index ["customer_id"], name: "index_cart_items_on_customer_id"
+    t.index ["item_id"], name: "index_cart_items_on_item_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -89,19 +89,19 @@ ActiveRecord::Schema.define(version: 2023_10_09_172135) do
     t.string "image"
   end
 
-  create_table "oder_items", force: :cascade do |t|
-    t.integer "item_id_id", null: false
-    t.integer "oder_id_id", null: false
+  create_table "order_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
     t.integer "price", null: false
     t.integer "quantitiy", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id_id"], name: "index_oder_items_on_item_id_id"
-    t.index ["oder_id_id"], name: "index_oder_items_on_oder_id_id"
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
-  create_table "oders", force: :cascade do |t|
-    t.integer "customer_id_id", null: false
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id", null: false
     t.string "name", null: false
     t.string "postcode", null: false
     t.string "address", null: false
@@ -110,14 +110,14 @@ ActiveRecord::Schema.define(version: 2023_10_09_172135) do
     t.integer "payment_method", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id_id"], name: "index_oders_on_customer_id_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "cart_items", "customer_ids"
-  add_foreign_key "cart_items", "item_ids"
-  add_foreign_key "oder_items", "item_ids"
-  add_foreign_key "oder_items", "oder_ids"
-  add_foreign_key "oders", "customer_ids"
+  add_foreign_key "cart_items", "customers"
+  add_foreign_key "cart_items", "items"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "customers"
 end
