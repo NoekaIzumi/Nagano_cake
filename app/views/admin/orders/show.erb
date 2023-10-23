@@ -1,0 +1,21 @@
+<body>
+
+  <header>
+
+        <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+        <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+        <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
+        <% if admin_signed_in? %>
+        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+        <% else %>
+        <%= link_to "ログイン", new_admin_session_path , class: 'btn btn-default' %>
+        <% end %>
+  </header>
+
+  <main>
+    <h2>注文履歴詳細</h2>
+    <p>購入者</p>
+    <p>注文日</p>
+    <p>配送先</p>
+    <p>支払い方法</p>
+  </main>

@@ -16,7 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
  namespace :admin do
    resources :items
    resources :customers
-   resources :orders
+   resources :orders,only: [:show]
  end
 
  namespace :customer do
@@ -27,7 +27,11 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
        patch 'decrease'
      end
    end
-   resources :orders
+   resources :orders do
+     member do
+     post 'confirm'
+   end
+  end
    resources :items,only: [:index, :show]
  end
 
@@ -45,6 +49,10 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
 
  #カート内商品全削除
  delete '/customer/cart_items' => 'customer/cart_items#destroy_all'
+
+#注文情報確認
+ get '/customers/orders/confirm'=> 'customer/orders#confirm'
+ post '/customers/orders/confirm'=> 'customer/orders#confirm'
 
   # 退会確認画面
  get  '/customers/check' => 'customers#check'

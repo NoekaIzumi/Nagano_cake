@@ -1,0 +1,121 @@
+<header>
+
+
+    　　<%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+
+        <p>ようこそ
+        <%= @customer.last_name %>
+		<%= @customer.first_name %>
+		さん！</p>
+  </header>
+
+  <style>
+
+  .title{
+    margin-left:100px;
+  }
+
+  .container{
+    display: flex;
+  }
+
+
+  .main-table{
+    margin-right:50px;
+  }
+
+  .confirm{
+    margin-left:100px;
+  }
+
+    table.row th,
+    table.row td{
+
+      width:100%;
+
+      display:block;
+
+
+    }
+  </style>
+<div class = "main">
+  <div class = "title">
+    <h3>注文情報確認</h3>
+  </div>
+
+  <div class = "container">
+
+    <div class = "main-table">
+      <table class = "table">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+        <% @cart_item.each do |cart_item| %>
+          <td><%= image_tag cart_item.item.image, size: "100x80" %>
+          <%= cart_item.item.name %></td>
+          <td><%= cart_item.item.with_tax_price %></td>
+          <td><%= cart_item.item.amount %></td>
+          <td><%= cart_item.subtotal %></td>
+        <% end %>
+        </tr>
+      </tbody>
+
+      </table>
+    </div>
+
+    <div class= "sub-table">
+      <table class = "row">
+        <tr>
+          <th>送料</th>
+          <td><%= @shipping_fee %></td>
+        </tr>
+
+        <tr>
+          <th>商品合計</th>
+          <td></td>
+        </tr>
+
+        <tr>
+          <th>請求金額</th>
+          <td></td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+
+
+    <div class = "confirm">
+
+
+      <p>支払い方法</p>
+      <p>
+        <% if @selected_payment_method == "credit_card" %>
+         クレジットカード
+        <% else %>
+         銀行振込
+        <% end %></p>
+
+      <p>お届け先</p><p><%=@order.address %></p>
+      <p><%=@order.name %>
+      </p>
+    </div>
+    <div class = "button">
+      <%= submit_tag "注文を確定する", class: "btn btn-success" %>
+    </div>
+ </div>
+
+
+

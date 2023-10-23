@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
 
 
   has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   def customer_status
     if is_deleted == true
