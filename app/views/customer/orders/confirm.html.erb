@@ -31,8 +31,8 @@
     margin-left:100px;
   }
 
-    table.row th,
-    table.row td{
+    .table.row th,
+    .table.row td{
 
       width:100%;
 
@@ -60,15 +60,16 @@
       </thead>
 
       <tbody>
+        <% @cart_items.each do |cart_item| %>
         <tr>
-        <% @cart_item.each do |cart_item| %>
           <td><%= image_tag cart_item.item.image, size: "100x80" %>
           <%= cart_item.item.name %></td>
           <td><%= cart_item.item.with_tax_price %></td>
-          <td><%= cart_item.item.amount %></td>
+          <td><%= cart_item.amount %></td>
           <td><%= cart_item.subtotal %></td>
-        <% end %>
+          <% @sum += cart_item.subtotal %>
         </tr>
+        <% end %>
       </tbody>
 
       </table>
@@ -78,17 +79,17 @@
       <table class = "row">
         <tr>
           <th>送料</th>
-          <td><%= @shipping_fee %></td>
+          <td><%= @shipping_fee %>円</td>
         </tr>
 
         <tr>
           <th>商品合計</th>
-          <td></td>
+          <td><%= @sum %>円</td>
         </tr>
 
         <tr>
           <th>請求金額</th>
-          <td></td>
+          <td><%= @total_amount %>円</td>
         </tr>
 
       </table>

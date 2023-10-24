@@ -24,11 +24,7 @@ class Customer::CartItemsController < ApplicationController
     end
   end
 
-  def update
-    cart_item = CartItem.find(params[:id])
-    cart_item.update(cart_item_params)
-    redirect_back(fallback_location: root_path)
-  end
+
 
   def destroy
    cart_item = CartItem.find(params[:id])
@@ -38,7 +34,7 @@ class Customer::CartItemsController < ApplicationController
 
   def destroy_all
    CartItem.destroy_all
-   redirect_to root_path
+   redirect_to customer_cart_items_path
   end
 
   def cart_item_params
