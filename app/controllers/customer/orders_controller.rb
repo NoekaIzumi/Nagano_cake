@@ -5,11 +5,6 @@ class Customer::OrdersController < ApplicationController
     @customer = current_customer
   end
 
-
-  def thanks
-
-  end
-
   def confirm
     @order = current_customer.orders.new(order_params)
     @customer = current_customer
@@ -55,11 +50,21 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
-
+    @customer = current_customer
+    @orders = current_customer.orders.all
+    @order_items = OrderItem.where(order_id: @orders.pluck(:id))
   end
 
   def show
-    @order = Order.find(params[:id])
+  @customer = current_customer
+  @order = Order.find(params[:id])
+  @order_items = @order.order_items
+  @sum = 0
+  @shipping_fee = 800
+  @order_items.each do |order_item|
+    @sum += order_item.price * order_item.quantity
+  end
+  @total_fee = @sum + @shipping_fee
   end
 
   private
@@ -71,7 +76,10 @@ class Customer::OrdersController < ApplicationController
   def customer_params
     params.require(:order).permit(:address, :postal_code, :name )
   end
-
+  
+  def order_item_params
+  params.require(:order_item).permit(:item_id, :order_id, :price,:quantity)
+  end
 
 
 

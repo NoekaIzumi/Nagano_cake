@@ -1,0 +1,99 @@
+<header>
+
+
+    　　<%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+
+        <p>ようこそ
+        <%= @customer.last_name %>
+		<%= @customer.first_name %>
+		さん！</p>
+</header>
+
+<style>
+
+    .table.order-table th,
+    .table.order-table td{
+
+      width:100%;
+
+      display:block;
+    }
+
+</style>
+
+<diV class = "order">
+  <div class = "order-info">
+    <div class = "title">
+      <strong><p>注文情報</p></strong>
+    </div>
+    <table class = "order-table">
+      <tr>
+       <%= form_with model: [:customer,@order], local:true do |f| %>
+        <th>注文日</th><td><%=@order.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+      <tr>
+        <th>配送先</th><td><%=@order.address %></td>
+      </tr>
+      <tr>
+        <th>支払い方法</th><td><%=@order.payment_method_i18n %></td>
+       <% end %>
+      </tr>
+    </table>
+  </div>
+  
+  <div class = "fee">
+    <table class = "fee">
+  　<tr>
+      <th>商品合計</th>
+      <td>
+        <% @order_items_sum = 0 %>
+        <% @order_items.each do |order_item| %>
+          <% @sum += order_item.price * order_item.quantity %>
+        <% end %>
+        <%= @sum %>
+      </td>
+  　</tr>
+
+    <tr>
+      <th>配送料</th>
+      <td><%= @shipping_fee %></td>
+    </tr>
+
+    <tr>
+      <th>ご請求額</th>
+      <td><%= @total_fee %></td>
+    </tr>
+    </table>
+    </div>
+
+  <div class = "order-item">
+    <table class = "order-item">
+     <tr>
+      <thead>
+       <th>商品</th>
+       <th>単価(税込)</th>
+       <th>個数</th>
+       <th>小計</th>
+       </thead>
+    　</tr>
+
+      <tr>
+      <tbody>
+      <% @order_items.each do |order_item| %>
+        <tr>
+          <td><%= order_item.item.name %></td>
+          <td><%= order_item.price %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= order_item.price * order_item.quantity %></td>
+        </tr>
+      <% end %>
+    　</tbody>
+      </tr>
+
+    </table>
+  </div>
+
+</diV>

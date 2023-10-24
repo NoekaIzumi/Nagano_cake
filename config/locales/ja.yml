@@ -1,4 +1,9 @@
 ja:
+
+  time:
+    formats:
+      default: "%Y/%m/%d"
+
   enums:
     order:
       payment_method:
@@ -8,6 +13,6 @@ ja:
   errors:
     messages:
       not_saved: "エラーが発生したため、保存されませんでした。"
-      
-      
-  
+
+
+
