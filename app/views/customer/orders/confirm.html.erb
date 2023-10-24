@@ -10,7 +10,7 @@
         <%= @customer.last_name %>
 		<%= @customer.first_name %>
 		さん！</p>
-  </header>
+</header>
 
   <style>
 
@@ -67,7 +67,6 @@
           <td><%= cart_item.item.with_tax_price %></td>
           <td><%= cart_item.amount %></td>
           <td><%= cart_item.subtotal %></td>
-          <% @sum += cart_item.subtotal %>
         </tr>
         <% end %>
       </tbody>
@@ -113,10 +112,19 @@
       <p><%=@order.name %>
       </p>
     </div>
+
+
+  <%= form_with model: @order , url: "/customer/orders"  , method: :post, local:true do |f| %>
+    <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <%= f.hidden_field :payment_method, value:  @order.payment_method %>
+    <%= f.hidden_field :shipping_fee, value: 800 %>
+    <%= f.hidden_field :postcode, value: @order.postcode %>
+    <%= f.hidden_field :total_amount, value: @sum + 800%>
+    <%= f.hidden_field :address, value: @order.address%>
+    <%= f.hidden_field :name, value: @order.name %>
+
     <div class = "button">
-      <%= submit_tag "注文を確定する", class: "btn btn-success" %>
+      <%= f.submit "注文を確定する", class: "btn btn-success" %>
     </div>
- </div>
-
-
-
+  <% end %>
+  </div>

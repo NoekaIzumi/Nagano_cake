@@ -4,8 +4,6 @@ class Customer::CartItemsController < ApplicationController
      @customer = Customer.find(current_customer.id)
      @cart_items = @customer.cart_items
      @sum = 0
-
-
   end
 
   def create

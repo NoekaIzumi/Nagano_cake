@@ -54,6 +54,9 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
  get '/customers/orders/confirm'=> 'customer/orders#confirm'
  post '/customers/orders/confirm'=> 'customer/orders#confirm'
 
+ #注文完了画面
+ get '/customers/orders/thanks' => 'customer/orders#thanks'
+
   # 退会確認画面
  get  '/customers/check' => 'customers#check'
  # 論理削除用のルーティング

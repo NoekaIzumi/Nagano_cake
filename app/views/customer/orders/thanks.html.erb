@@ -1,0 +1,21 @@
+<header>
+
+
+    　　<%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+
+        <p>ようこそ
+        <%= @customer.last_name %>
+		<%= @customer.first_name %>
+		さん！</p>
+</header>
+
+<style>
+  thanks{
+    text-align: center
+  }
+</style>
+
+<thanks>ご注文ありがとうございました！</thanks>

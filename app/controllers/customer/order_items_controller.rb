@@ -2,7 +2,6 @@ class Customer::OrderItemsController < ApplicationController
 
   def create
      order_item = OrderItem.new(order_item_params)
-
   end
 
   private
