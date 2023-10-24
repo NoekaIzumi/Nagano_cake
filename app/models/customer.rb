@@ -10,18 +10,11 @@ class Customer < ApplicationRecord
   has_many :orders, dependent: :destroy
 
   def customer_status
-    if is_deleted == true
-      "退会"
-    else
-      "有効"
-    end
-
+  if is_deleted
+    "退会"
+  else
+    "有効"
   end
-
-  # is_deletedがfalseならtrueを返すようにしている
-  def active_for_authentication?
-    super && (is_deleted == false)
   end
-
-
+  
 end

@@ -14,10 +14,10 @@
 
   <main>
     <h2>注文履歴詳細</h2>
-    <p>購入者</p>
-    <p>注文日</p>
-    <p>配送先</p>
-    <p>支払い方法</p>
+    <strong><p>購入者</p></strong><%= @order.name %>
+    <strong><p>注文日</p></strong><%= @order.created_at.strftime("%Y-%m-%d") %>
+    <strong><p>配送先</p></strong><%= @order.address %>
+    <strong><p>支払い方法</p></strong><%= @order.payment_method_i18n%>
 
 
     <div class = "table">
@@ -30,19 +30,22 @@
             <th>小計</th>
           </tr>
         </thead>
-
+        
         <tbody>
+        <% @order_items.each do |order_item| %>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><%= order_item.item.name %></td>
+            <td><%= order_item.price %></td>
+            <td><%= order_item.quantity %></td>
+            <td><%=  order_item.price*order_item.quantity %></td>
           </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
 
     <strong><p>商品合計</p></strong>
-    <strong><p>送料</p></strong>
-    <strong><p>請求金額合計</p></strong>
+    <%= @order.total_amount - @shipping_fee %>円
+    <strong><p>送料</p></strong><%= @shipping_fee %>円
+    <strong><p>請求金額合計</p></strong><%= @order.total_amount %>円
   </main>
