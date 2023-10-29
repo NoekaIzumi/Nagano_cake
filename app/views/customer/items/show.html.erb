@@ -2,12 +2,17 @@
   <%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
   <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
   <%= link_to "カート",  customer_cart_items_path, class: 'btn btn-default' %>
+ <% if customer_signed_in? %>
   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+ <% else %>
+  <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
+ <% end %>
 
+<% if customer_signed_in? %>
 <p>ようこそ
 <%= @customer.last_name %><%= @customer.first_name %>
 さん！</p>
-
+<% end %>
 </header>
 
 <style>
@@ -53,6 +58,7 @@
         <td>¥<%= @item.price %>(税込)</td>
         </tr>
       </table>
+    <% if customer_signed_in? %>
       <%= form_with model: [:customer,@cart_item], local:true do |f| %>
        <%= f.hidden_field :item_id, value: @item.id %>
        <%= f.select :amount, *[1..10] %>
@@ -60,6 +66,7 @@
         <%= f.submit  '  カートに入れる  ', class: "btn btn-success" %>
       </div>
       <% end %>
+    <% end %>
     </div>
   </div>
 

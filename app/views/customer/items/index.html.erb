@@ -2,48 +2,69 @@
   <%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
   <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
   <%= link_to "カート",  customer_cart_items_path, class: 'btn btn-default' %>
+ <% if customer_signed_in? %>
   <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+ <% else %>
+  <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
+ <% end %>
 
 
-
+<% if customer_signed_in? %>
 <p>ようこそ
 <%= @customer.last_name %><%= @customer.first_name %>
 さん！</p>
+<% end %>
 
 </header>
 
-<h2>商品一覧(全×件)</h2>
- <style>
+<h2>商品一覧(全11件)</h2>
 
-     .container{
-       display: flex;
-     }
+ <style>container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-     .item-box{
-       justify-content: center;
-       margin:20px;
-     }
+.column {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
+.item-box {
+  margin:20px;
+  width: 20%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
  </style>
 
- <div class ="container">
-
- <% @items.each do |item| %>
-
-  <div class ="item-box">
-    <div class ="item-image">
-    <%= link_to customer_item_path(item.id) do %>
-     <%= image_tag item.image ,size: "200x150" %>
-    <% end %>
+ <div class="container">
+  <% @items.each_slice(8) do |group| %>
+    <div class="column">
+      <% group.each do |item| %>
+        <div class="item-box">
+          <div class="item-image">
+            <%= link_to customer_item_path(item.id) do %>
+              <%= image_tag item.image, size: "200x150" %>
+            <% end %>
+          </div>
+          <div class="item-name">
+            <%= item.name %>
+          </div>
+          <div class="item-price">
+            ¥ <%= item.price %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div class = "item-name">
-     <%= item.name %>
-    </div>
-
-   <div class = "item-price">
-    ¥ <%= item.price %>
-   </div>
-
-  </div>
-<% end %>
+  <% end %>
 </div>
+
+ <div class ="pagination">
+     <%= paginate @items %>
+ </div>

@@ -1,4 +1,4 @@
- <body>
+
   <header>
     <% if customer_signed_in? %>
         <%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
@@ -15,33 +15,60 @@
         <% end %>
   </header>
 
-  <main>
 
-    <main-visual>
+<style>
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.new-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-box {
+  width: 200px;
+  text-align: left;
+  margin-right: 20px;
+  margin-bottom: 20px;;
+  }
+
+  </style>
+
       <p>ようこそ、ながのCAKEへ！<br/>
       このサイトは、ケーキ販売のECサイトになります。<br/>
       会員でない方も商品の閲覧はできますが、<br/>
       購入には会員登録が必要になります。<br/>
       </p>
-    </main-visual>
-
-    <new-items>
-      <h3>新着商品</h3>
-      <!--Bootstrapで縦並びにする-->
-      <table class="table">
-        <tbody>
-          <tr>
-            <th>新着商品画像</th>
-            <th>商品名</th>
-            <th>価格</th>
-          </tr>
-        </tbody>
-      </table>
-
-    </new-items>
 
 
-  </main>
+  <h3>新着商品</h3>
 
+<div class ="container">
+ <div class ="new-items">
+ <% @items.each do |item| %>
 
- </body>
+  <div class ="item-box">
+    <div class ="item-image">
+    <%= link_to customer_item_path(item.id) do %>
+     <%= image_tag item.image ,size: "200x150" %>
+    <% end %>
+    </div>
+    <div class = "item-name">
+     <%= item.name %>
+    </div>
+
+   <div class = "item-price">
+    ¥ <%= item.price %>
+   </div>
+  </div>
+<% end %>
+</div>
+</div>
+<div class ="pagination justify-content-center">
+     <%= paginate @items %>
+</div>

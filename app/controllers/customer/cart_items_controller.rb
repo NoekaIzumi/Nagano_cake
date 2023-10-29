@@ -1,9 +1,13 @@
 class Customer::CartItemsController < ApplicationController
 
   def index
+    if customer_signed_in?
      @customer = Customer.find(current_customer.id)
      @cart_items = @customer.cart_items
      @sum = 0
+    else
+    redirect_to new_customer_session_path
+    end
   end
 
   def create
