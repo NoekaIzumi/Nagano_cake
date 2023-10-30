@@ -44,4 +44,15 @@ def customer_state
     # 【処理内容3】
   end
 end
+
+def reject_customer
+    @customer = User.find_by(email: params[:customer][:email])
+      if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
+        redirect_to new_customer_sessions
+      else
+        flash[:notice] = "項目を入力してください"
+      end
+end
+
+
 end

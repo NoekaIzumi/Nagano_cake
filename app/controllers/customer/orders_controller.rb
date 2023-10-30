@@ -64,7 +64,7 @@ class Customer::OrdersController < ApplicationController
   @order_items.each do |order_item|
     @sum += order_item.price * order_item.quantity
   end
-  @total_fee = @sum + @shipping_fee
+  @total_amount = @sum + @shipping_fee
   end
 
   private

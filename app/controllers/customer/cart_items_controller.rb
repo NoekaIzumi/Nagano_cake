@@ -26,6 +26,14 @@ class Customer::CartItemsController < ApplicationController
     end
   end
 
+  def update
+
+  cart_item = CartItem.find(params[:id])
+  cart_item.update(amount: params[:cart_item][:amount].to_i)
+  redirect_to customer_cart_items_path
+
+  end
+
 
 
   def destroy

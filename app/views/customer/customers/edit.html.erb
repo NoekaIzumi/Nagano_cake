@@ -20,7 +20,7 @@
 <main>
 <p>　会員情報編集　</p>
 
-<%= form_for('@customer') do |f| %>
+<%= form_for([:customer, @customer]) do |f| %>
 
   <div class="field">
    <%= f.label :氏名 %> <%= f.text_field :last_name %> <%= f.text_field :first_name %>

@@ -58,7 +58,8 @@
      </tr>
    </table>
 
+   <% if @cart_items.present? %>
    <%= link_to "注文情報入力に進む",new_customer_order_path, class: "btn btn-success" %>
-
+   <% end %>
 
   </div>
