@@ -11,9 +11,8 @@
       display: flex;
       justify-content: center;
     }
-
     .form {
-      margin: auto;
+      padding: 20px;
     }
 
     .field {
@@ -25,25 +24,30 @@
     }
 
     .actions {
-      margin: 20px;
-      text-align: center;
+      margin-left: 150px;
+      margin-top,bottom,right: 20px;
+    }
+
+    .new {
+      margin-top: 50px;
     }
   </style>
 
   <div class="main">
     <div class="form">
-      <h5>ログイン</h5>
+    <h5>ログイン</h5>
+      </br>
       <p>会員の方はこちらからログイン</p>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_with model: @customer, url: new_customer_session_path,  class: 'customer', local: true do |f| %>
         <div class="field">
-          <%= f.label :メールアドレス %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <%= f.label :メールアドレス %>&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",size: "50" %>
         </div>
 
         <div class="field">
-          <%= f.label :パスワード %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.label :パスワード %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= f.password_field :password, autocomplete: "current-password",size: "50" %>
         </div>
 
         <div class="actions">
@@ -51,8 +55,10 @@
         </div>
       <% end %>
 
+      <div class = "new">
       <p>会員登録がお済みでない方<br /></p>
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "こちら", new_customer_registration_path %>&nbsp;から新規登録を行ってください。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to "こちら", new_customer_registration_path %>&nbsp;&nbsp;から新規登録を行ってください。</p>
+      </div>
     </div>
   </div>
 </body>

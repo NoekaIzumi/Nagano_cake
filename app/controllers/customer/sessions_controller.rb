@@ -10,11 +10,17 @@ class Customer::SessionsController < Devise::SessionsController
     root_path
   end
 
+  def after_sign_up_path_for(resource)
+    customers_current_customer_path
+  end
+
+
 before_action :customer_state, only: [:create]
   # GET /resource/sign_in
   # def new
   #   super
   # end
+
 
   # POST /resource/sign_in
   # def create

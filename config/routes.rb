@@ -60,8 +60,8 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
   # 退会確認画面
  get  '/customers/check' => 'customers#check'
  # 論理削除用のルーティング
- get '/customers/confirm_withdraw' => 'public/customers#confirm_withdraw'
- patch  '/customers/withdraw' => 'public/customers#withdraw'
+ get '/customers/confirm_withdraw' => 'customer/customers#confirm_withdraw'
+ patch  '/customers/withdraw' => 'customer/customers#withdraw'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

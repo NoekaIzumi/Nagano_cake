@@ -48,7 +48,7 @@
           <th>商品説明</th><td><%= @item.introduction %></td>
         </tr>
         <tr>
-          <th>税込価格</th>
+          <th>税込価格</th><td>¥<%= @item.with_tax_price %></td>
         </tr>
         <tr>
           <th>税抜き価格</th> <td>¥<%= @item.price %></td>

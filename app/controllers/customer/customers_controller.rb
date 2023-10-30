@@ -18,7 +18,7 @@ class Customer::CustomersController < ApplicationController
 		else
 			render :edit
 		end
-	end
+  end
 
 	def new
 	 @customer = Customer.new

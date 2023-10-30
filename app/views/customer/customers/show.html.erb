@@ -14,10 +14,10 @@
   </header>
 
   <main>
-    <h2>マイページ</h2>
+    <h5>マイページ</h5>
 
     <table class="table">
-      <h2>登録情報</h2>
+      <strong><p>登録情報</p></strong>
       <%= link_to '編集する', customers_current_customer_edit_path(current_customer), class: "btn btn-success" %>
 
 		<tr>
@@ -49,7 +49,7 @@
 			<td><%= @customer.email %></td>
 		</tr>
 		</table>
-		<h2>注文履歴</h2>
+		<strong><p>注文履歴</p></strong>
 		<%= link_to '一覧を見る',customer_orders_path,class: "btn btn-primary" %>
 
 
