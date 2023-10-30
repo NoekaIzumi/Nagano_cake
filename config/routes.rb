@@ -41,8 +41,6 @@ devise_for :admin, skip: [:registrations, :passwords],controllers: {
 
  get 'public/home/about' , to: 'public/homes#about' , as: 'about'
  get 'admin'=> 'admin/homes#top'
- get '/customers/current_customer' => 'customer/customers#show'
- get '/customers/current_customer/edit' => 'customer/customers#edit'
 
  get '/customers/sign_in' => 'customer/sessions#new'
  get '/customers/sign_up' => 'customer/registration#new'

@@ -1,8 +1,5 @@
 class Customer::CustomersController < ApplicationController
 
-
-  before_action :authenticate_customer!, only: [:show, :edit]
-
   def show
     @customer = Customer.find(current_customer.id)
   end
@@ -14,7 +11,7 @@ class Customer::CustomersController < ApplicationController
   def update
 		@customer = current_customer
 		if @customer.update(customer_params)
-		   redirect_to customers_current_customer_path
+		   redirect_to customer_customer_path(current_customer)
 		else
 			render :edit
 		end
@@ -26,7 +23,13 @@ class Customer::CustomersController < ApplicationController
 
 	def create
 	 @customer = Customer.new(customer_params)
-   @customer.save
+   if @customer.save
+     byebug
+     @customer = Customer.find_by_email
+     sign_in @customer
+   else
+     render new
+   end
 	end
 
 

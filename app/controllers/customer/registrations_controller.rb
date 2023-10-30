@@ -1,27 +1,22 @@
 # frozen_string_literal: true
 
 class Customer::RegistrationsController < Devise::RegistrationsController
-
-  def create
-  @customer = Customer.new(customer_params)
-
-  if @customer.save
-    # Redirect to a confirmation page or other appropriate action.
-    redirect_to customers_current_customer_path
-  else
-    render :new
-  end
-  end
+before_action :customer_params, only: [:create]
+  #def create
+  #end
 
 private
 
 def customer_params
-  params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
-    :email, :postal_code, :address, :telephone_number,
-    :password, :password_confirmation,
-    :is_deleted)
+  devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name, :first_name, :last_name_kana, :first_name_kana,:email, :postal_code, :address, :telephone_number,:password, :password_confirmation,:is_deleted])
+
 end
-  # before_action :configure_sign_up_params, only: [:create]
+
+ def after_sign_up_path_for(resource)
+   customer_customer_path(current_customer)
+ end
+  #   super(resource)
+  # end
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
