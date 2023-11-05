@@ -1,30 +1,74 @@
 <body>
   <header>
-
-
+  	<div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  	</div>
+  	<div class = "header">
     　　<%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
         <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
-
-        <p>ようこそ
-        <%= @customer.last_name %>
-				<%= @customer.first_name %>
-				さん！</p>
+     </div>
   </header>
 
+  <style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+
+  a {
+  	margin-bottom: 20px;
+  	margin-left: 50px;
+  }
+
+  table.table {
+  	justify-content: right;
+  	margin-left: 50px;
+  	margin-right:50px;
+  	padding: 50px;
+  }
+
+  table th {
+  	border-top: 1px solid;
+  }
+
+ table.table,
+ table th,
+ table td {
+    border: 1px solid;
+}
+
+  .button-2 {
+ 	width: 250px;
+ }
+  </style>
+
   <main>
-    <h5>マイページ</h5>
+    <h5 style="margin-left:50px;">マイページ</h5>
+    <a><strong>登録情報</strong><%= link_to '編集する', edit_customer_customer_path(current_customer), class: "btn btn-success" %>
+    </a>
 
     <table class="table">
-      <strong><p>登録情報</p></strong>
-      <%= link_to '編集する', edit_customer_customer_path(current_customer), class: "btn btn-success" %>
-
 		<tr>
-			<th>氏名</th>
-			<td><%= @customer.last_name %>
+			<th style= "border-top: 1px solid;">氏名</th>
+			<td style= "border-top: 1px solid;"><%= @customer.last_name %>
 				<%= @customer.first_name %>
-			</td>
+			</td style= "border-top: 1px solid;">
 		</tr>
 		<tr>
 			<th>カナ</th>
@@ -49,8 +93,8 @@
 			<td><%= @customer.email %></td>
 		</tr>
 		</table>
-		<strong><p>注文履歴</p></strong>
-		<%= link_to '一覧を見る',customer_orders_path,class: "btn btn-primary" %>
+		<a><strong>注文履歴</strong><%= link_to '一覧を見る',customer_orders_path,class: "btn btn-primary" %></a>
+
 
 
 

@@ -1,23 +1,85 @@
+<header>
 
-  <header>
+  <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  </div>
 
+    <% if customer_signed_in? %>
+        <%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
+    <% else %>
+    　　<%= link_to "About", about_path , class: 'btn btn-default' %>
+    <% end %>
 
-    　　<%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
-        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
-        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path, class: 'btn btn-default' %>
+        <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default' %>
+         <% if customer_signed_in? %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
-
-        <p>ようこそ
-        <%= @customer.last_name %>
-		<%= @customer.first_name %>
-		さん！</p>
+        <% else %>
+        <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
+        <% end %>
   </header>
+
+  <style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+  
+  .button-delete{
+    padding-left: 955px;
+    padding-bottom: 20px;
+  }
+
+  .table thead th,
+  .table td{
+   border: 1px solid;
+  }
+
+  table.table,
+  table th,
+  table td {
+    border: 1px solid;
+  }
+    
+  .button-continue {
+    padding-bottom: 20px;
+    padding-left:30px;
+  }
+  
+  .table {
+    margin:20px;
+  }
+  
+  .table.sub-table {
+    margin-left:830px;
+    width: 300px;
+  }
+  
+  .button-order{
+     padding-left:30px;
+  }
+
+  </style>
 
   <div class = "container">
 
-  <p>ショッピングカート</p>
+  <h5 style= "margin-left:100px;">ショッピングカート</h5>
+  <div class = "button-delete">
   <%= link_to "カートを空にする",customer_cart_items_path, method: :delete, class: "btn btn-danger", "data-confirm" => "本当に消しますか？" %>
-
+  </div>
    <table class = "table">
 
      <thead>
@@ -49,17 +111,23 @@
          <% end %>
    </table>
 
-   <table class = "table">
+  <div class = "button-continue">
+  <%= link_to "買い物を続ける",root_path, class: "btn btn-primary" %>
+  </div>
+   <table class = "table sub-table">
 
      <tr>
-         <td><%= link_to "買い物を続ける",root_path, class: "btn btn-primary" %></td>
          <td>合計金額</td>
          <td><%= @sum %></td>
      </tr>
    </table>
 
+
+ <div class = "button-order">
+   
    <% if @cart_items.present? %>
-   <%= link_to "注文情報入力に進む",new_customer_order_path, class: "btn btn-success" %>
+   <%= link_to "情報入力に進む",new_customer_order_path, class: "btn btn-success" %>
    <% end %>
 
+ </div>
   </div>

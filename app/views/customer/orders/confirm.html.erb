@@ -1,18 +1,35 @@
 <header>
-
-
+  	<div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  	</div>
+  	<div class = "header">
     　　<%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
         <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+     </div>
+  </header>
 
-        <p>ようこそ
-        <%= @customer.last_name %>
-		<%= @customer.first_name %>
-		さん！</p>
-</header>
 
   <style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
 
   .title{
     margin-left:100px;
@@ -30,16 +47,29 @@
   .confirm{
     margin-left:100px;
   }
+  
+  .table thead th {
+   border: 1px solid;
+  }
+  
+  table.table,
+  table th,
+  table td {
+    border: 1px solid;
+    
+  }
 
     .table.row th,
     .table.row td{
 
       width:100%;
-
       display:block;
-
-
     }
+    
+    .button {
+      justify-content: center;
+    }
+
   </style>
 <div class = "main">
   <div class = "title">
@@ -52,18 +82,18 @@
       <table class = "table">
       <thead>
         <tr>
-          <th>商品名</th>
-          <th>単価(税込)</th>
-          <th>数量</th>
-          <th>小計</th>
+          <th>商品名&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+          <th>単価(税込)&emsp;&emsp;</th>
+          <th>数量&emsp;&emsp;&emsp;&emsp;</th>
+          <th>小計&emsp;&emsp;&emsp;&emsp;</th>
         </tr>
       </thead>
 
       <tbody>
         <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= image_tag cart_item.item.image, size: "100x80" %>
-          <%= cart_item.item.name %></td>
+          <td><%= image_tag cart_item.item.image, size: "60x45" %>
+          <%= cart_item.item.name %>&emsp;&emsp;&emsp;&emsp;</td>
           <td><%= cart_item.item.with_tax_price %></td>
           <td><%= cart_item.amount %></td>
           <td><%= cart_item.subtotal %></td>
@@ -77,18 +107,18 @@
     <div class= "sub-table">
       <table class = "row">
         <tr>
-          <th>送料</th>
-          <td><%= @shipping_fee %>円</td>
+          <th>送料&emsp;&emsp;</th>
+          <td><%= @shipping_fee %>円&emsp;&emsp;</td>
         </tr>
 
         <tr>
-          <th>商品合計</th>
-          <td><%= @sum %>円</td>
+          <th>商品合計&emsp;&emsp;</th>
+          <td><%= @sum %>円&emsp;&emsp;</td>
         </tr>
 
         <tr>
-          <th>請求金額</th>
-          <td><%= @total_amount %>円</td>
+          <th>請求金額&emsp;&emsp;</th>
+          <td><%= @total_amount %>円&emsp;&emsp;</td>
         </tr>
 
       </table>
@@ -98,19 +128,15 @@
 
 
     <div class = "confirm">
-
-
-      <p>支払い方法</p>
-      <p>
-        <% if @selected_payment_method == "credit_card" %>
-         クレジットカード
-        <% else %>
-         銀行振込
-        <% end %></p>
-
-      <p>お届け先</p><p><%=@order.address %></p>
-      <p><%=@order.name %>
-      </p>
+      <a><strong>支払い方法</strong></a>
+      <% if @selected_payment_method == "credit_card" %>
+      &nbsp;クレジットカード
+    　<% else %>
+      銀行振込
+      <% end %></br>
+      <a><strong>お届け先</strong></a>
+      <a>&emsp;&nbsp;<%=@order.address %></a></br>
+      &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<%=@order.name %>
     </div>
 
 

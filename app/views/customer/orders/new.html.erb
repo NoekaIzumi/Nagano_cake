@@ -1,38 +1,71 @@
-<header>
 
-
+  <header>
+  	<div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  	</div>
+  	<div class = "header">
     　　<%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
         <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
-
-        <p>ようこそ
-        <%= @customer.last_name %>
-		<%= @customer.first_name %>
-		さん！</p>
+     </div>
   </header>
 
+ <style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+
+  main {
+    margin-left: 30px;
+  }
+
+
+    .button {
+      justify-content: center;
+    }
+  </style>
+
+<main>
+
+
 <h3>注文情報入力</h3>
-<%= form_with(model: [:customer, @order], url: customers_orders_confirm_path(@order),method: :post) do |f| %>
+<%= form_with(model: @order, url: customers_orders_confirm_path(@order),method: :post) do |f| %>
 
-
-   <p>支払い方法</p>
-   <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-   <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
-   <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-   <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer]%>
-
-
- <p>お届け先</p>
+   <strong><p>支払い方法</p></strong>
+    <%= f.radio_button :payment_method, :credit_card, checked: true %>
+    <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
+    <br>
+    <%= f.radio_button :payment_method, :transfer %>
+    <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], {value: :transfer} %>
+ <strong><p>お届け先</p></strong>
   <%= @customer.postal_code %>
-  <%= @customer.address %>
+  <%= @customer.address %></br>
+  <%= @customer.last_name %><%= @customer.first_name %>
+  </br>
 
 <div class = "button">
 
   <%= f.submit '  確認画面へ進む  ' ,class: "btn btn-primary" %>
 </div>
 
-<% end %>
 
+<% end %>
+</main>
 
 

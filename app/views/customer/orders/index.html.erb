@@ -1,16 +1,39 @@
-<header>
-
-
+ <header>
+  	<div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  	</div>
+  	<div class = "header">
     　　<%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
         <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+     </div>
+  </header>
 
-        <p>ようこそ
-        <%= @customer.last_name %>
-		<%= @customer.first_name %>
-		さん！</p>
-</header>
+  <style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+  table {
+    margin:30px;
+  }
+
+  </style>
 
 <div class = "container">
 
@@ -32,9 +55,9 @@
       <tr>
         <td><%=order.created_at.strftime("%Y-%m-%d") %></td>
         <td><%=order.address %></td>
-        <td><% @order_items.each do |order_item| %>
-            <%= order_item.item.name %></br>
-          <% end %>
+        <td> <% order.order_items.each do |order_item| %>
+   　          <%= order_item.item.name %><br>
+             <% end %>
         </td>
         <td><%=order.total_amount %>円</td>
         <td><%= link_to "表示する",customer_order_path(order), class: "btn btn-primary" %></td>

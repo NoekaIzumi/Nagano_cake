@@ -14,7 +14,7 @@ class Customer::OrdersController < ApplicationController
     @order.postcode = @customer.postal_code
     @order.address = @customer.address
     @order.name = @customer.last_name + @customer.first_name
-    @selected_payment_method = params[:order][:peyment_method]
+    @selected_payment_method = params[:order][:payment_method]
 
     @sum = 0
     @shipping_fee = 800
@@ -53,6 +53,7 @@ class Customer::OrdersController < ApplicationController
     @customer = current_customer
     @orders = current_customer.orders.all
     @order_items = OrderItem.where(order_id: @orders.pluck(:id))
+    
   end
 
   def show
@@ -76,7 +77,7 @@ class Customer::OrdersController < ApplicationController
   def customer_params
     params.require(:order).permit(:address, :postal_code, :name )
   end
-  
+
   def order_item_params
   params.require(:order_item).permit(:item_id, :order_id, :price,:quantity)
   end

@@ -1,99 +1,128 @@
 <header>
-
-
+  	<div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  	</div>
+  	<div class = "header">
     　　<%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
         <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
         <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+     </div>
+  </header>
 
-        <p>ようこそ
-        <%= @customer.last_name %>
-		<%= @customer.first_name %>
-		さん！</p>
-</header>
+  <style>
+  
+  div {
+  	 display: inline-block;
+  }
 
-<style>
+  .logo {
+  	margin-right: 700px;
+  }
 
-    .table.order-table th,
-    .table.order-table td{
 
-      width:100%;
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
 
-      display:block;
+  table {
+    margin-left:30px;
+    margin-bottom: 30px;
+    border:1px solid;
+  }
+  
+  .tr{
+    border:1px solid;
+  }
+
+
+.table.order-table th,
+.table.order-table td {
+  width: auto;
+  display: table-cell;
+}
+    
+    table.tr
+    table.table th,
+    table.table td{
+    　border:1px solid;
     }
-
+    
+  
 </style>
 
-<diV class = "order">
-  <div class = "order-info">
-    <div class = "title">
-      <strong><p>注文情報</p></strong>
-    </div>
+    <h5 style = "margin-left:100px">注文履歴詳細</h5>
+    
     <table class = "order-table">
+      <P style = "margin-left:30px"><strong>注文情報</strong></P>
       <tr>
        <%= form_with model: [:customer,@order], local:true do |f| %>
-        <th>注文日</th><td><%=@order.created_at.strftime("%Y-%m-%d") %></td>
+        <th style= "border: 1px solid;">注文日&emsp;&emsp;&emsp;&emsp;</th>
+        <td style= "border: 1px solid;"><%=@order.created_at.strftime("%Y-%m-%d") %></td>
       </tr>
       <tr>
-        <th>配送先</th><td><%=@order.address %></td>
+        <th style= "border: 1px solid;">配送先&emsp;&emsp;&emsp;&emsp;</th>
+        <td style= "border: 1px solid;"><%=@order.address %>&emsp;&emsp;</td>
       </tr>
       <tr>
-        <th>支払い方法</th><td><%=@order.payment_method_i18n %></td>
+        <th style= "border: 1px solid;">支払い方法&emsp;&emsp;</th>
+        <td style= "border: 1px solid;"><%=@order.payment_method_i18n %>&emsp;&emsp;</td>
        <% end %>
       </tr>
     </table>
-  </div>
-
-  <div class = "fee">
+  </a>
+  
+  <a>
     <table class = "fee">
+      <p style = "margin-left:30px"><strong>請求情報</strong></p>
   　<tr>
-      <th>商品合計</th>
-      <td>
+      <th style= "border: 1px solid;">商品合計&emsp;&emsp;</th>
+      <td style= "border: 1px solid;">
         <% @sum = 0 %>
         <% @order_items.each do |order_item| %>
           <% @sum += order_item.price * order_item.quantity %>
         <% end %>
-        <%= @sum %>
+        <%= @sum %>&emsp;&emsp;
       </td>
   　</tr>
 
     <tr>
-      <th>配送料</th>
-      <td><%= @shipping_fee %></td>
+      <th style= "border: 1px solid;">配送料</th>
+      <td style= "border: 1px solid;"><%= @shipping_fee %></td>
     </tr>
 
     <tr>
-      <th>ご請求額</th>
-      <td><%= @total_amount %></td>
+      <th style= "border: 1px solid;">ご請求額</th>
+      <td style= "border: 1px solid;"><%= @total_amount %></td>
     </tr>
     </table>
-    </div>
-
-  <div class = "order-item">
+    </a>
+    
     <table class = "order-item">
-     <tr>
+     <tr style= "border: 1px solid;">
+        <p style = "margin-left:30px"><strong>注文内容</strong></p>
       <thead>
-       <th>商品</th>
-       <th>単価(税込)</th>
-       <th>個数</th>
-       <th>小計</th>
+       <th style= "border: 1px solid;">商品</th>
+       <th style= "border: 1px solid;">単価(税込)&emsp;&emsp;</th>
+       <th style= "border: 1px solid;">個数&emsp;&emsp;</th>
+       <th style= "border: 1px solid;">小計&emsp;&emsp;</th>
        </thead>
     　</tr>
-
       <tr>
       <tbody>
       <% @order_items.each do |order_item| %>
         <tr>
-          <td><%= order_item.item.name %></td>
-          <td><%= order_item.price %></td>
-          <td><%= order_item.quantity %></td>
-          <td><%= order_item.price * order_item.quantity %></td>
+          <td style= "border: 1px solid;"><%= order_item.item.name %>&emsp;&emsp;</td>
+          <td style= "border: 1px solid;"><%= order_item.price %>&emsp;&emsp;</td>
+          <td style= "border: 1px solid;"><%= order_item.quantity %></td>
+          <td style= "border: 1px solid;"><%= order_item.price * order_item.quantity %></td>
         </tr>
       <% end %>
     　</tbody>
       </tr>
 
     </table>
-  </div>
-
-</diV>

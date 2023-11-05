@@ -1,34 +1,70 @@
 
   <header>
-    <% if customer_signed_in? %>
-        <%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
-    <% else %>
-    　　<%= link_to "About", about_path , class: 'btn btn-default' %>
-    <% end %>
 
+  <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  </div>
+
+      <% if customer_signed_in? %>
+        <%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+      <% else %>
+        <%= link_to "About", about_path , class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path, class: 'btn btn-default' %>
         <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default' %>
-         <% if customer_signed_in? %>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
-        <% else %>
         <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
-        <% end %>
+      <% end %>
   </header>
 
 
 <style>
+  
+  div {
+  	 display: inline-block;
+  }
+  
+  .logo {
+  	margin-right: 700px;
+  }
+ 
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
+
+
+.welcome {
+  text-align: center;
+  width: 860px;
+}
+
+.p {
+  text-align: left;
+}
+
+.title {
+  width: 860px;
+  justify-content: flex-start;
+}
+
 
 .new-items {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+
 }
+
 
 .item-box {
   width: 200px;
@@ -37,19 +73,30 @@
   margin-bottom: 20px;;
   }
 
+.pagination{
+  justify-content: left;
+  width: 860px;
+}
+
   </style>
 
+<div class ="container">
+
+<div class = "welcome">
       <p>ようこそ、ながのCAKEへ！<br/>
       このサイトは、ケーキ販売のECサイトになります。<br/>
       会員でない方も商品の閲覧はできますが、<br/>
       購入には会員登録が必要になります。<br/>
       </p>
+</div>
 
 
+<div class = "title">
   <h3>新着商品</h3>
+</div>
 
-<div class ="container">
  <div class ="new-items">
+
  <% @items.each do |item| %>
 
   <div class ="item-box">
@@ -67,8 +114,10 @@
    </div>
   </div>
 <% end %>
+
+<div class ="pagination justify-content-flex-end">
+      <%= link_to "全ての商品を見る>", customer_items_path %>
 </div>
 </div>
-<div class ="pagination justify-content-center">
-     <%= paginate @items %>
+
 </div>

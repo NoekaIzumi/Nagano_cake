@@ -1,31 +1,45 @@
 <header>
-  
-    <% if customer_signed_in? %>
-        <%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
-    <% else %>
-    　　<%= link_to "About", about_path , class: 'btn btn-default' %>
-    <% end %>
 
+  <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  </div>
+
+      <% if customer_signed_in? %>
+        <%= link_to "マイページ", customer_customer_path(current_customer), class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+        <%= link_to "カート", customer_cart_items_path, class: 'btn btn-default' %>
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
+      <% else %>
+        <%= link_to "About", about_path , class: 'btn btn-default' %>
         <%= link_to "商品一覧", customer_items_path, class: 'btn btn-default' %>
         <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default' %>
-         <% if customer_signed_in? %>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
-        <% else %>
         <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
-        <% end %>
+      <% end %>
+  </header>
 
-
-<% if customer_signed_in? %>
-<p>ようこそ
-<%= @customer.last_name %><%= @customer.first_name %>
-さん！</p>
-<% end %>
-
-</header>
 
 <h2>商品一覧(全×件)</h2>
 
- <style>container {
+<style>
+
+  div {
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+ container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
