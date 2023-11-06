@@ -29,20 +29,20 @@
   margin-top: 20px;
   margin-bottom: 60px;
   }
-  
+
   form{
      margin:0px;
   }
-  
+
   a{
     margin-right:50px;
   }
-  
+
   table {
     margin-left: 30px;
     margin-bottom:20px;
   }
-  
+
 
 </style>
 
@@ -52,12 +52,12 @@
 
 <table>
   <tr>
-  <th><%= f.label :氏名 %></th> 
+  <th><%= f.label :氏名 %></th>
   <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
   </tr></br>
 
   <tr>
-   <th><%= f.label :フリガナ %></th> 
+   <th><%= f.label :フリガナ %></th>
    <td><%= f.text_field :last_name_kana %> <%= f.text_field :first_name_kana %></td>
   </tr></br>
 
@@ -84,7 +84,7 @@
 
 　<div class="actions">
   <a><%= f.submit "    編集内容を保存    "  ,class: "btn btn-success"%></a>
-  
+
   <a><%= link_to " 退会する" , customers_confirm_withdraw_path, class: "btn btn-danger ms-3" %></a>
   </div>
 <% end %>

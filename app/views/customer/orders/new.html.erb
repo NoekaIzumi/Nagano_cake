@@ -15,7 +15,8 @@
 
  <style>
 
-  div {
+  .logo,
+  .header{
   	 display: inline-block;
   }
 
@@ -31,24 +32,21 @@
   }
 
 
-  main {
-    margin-left: 30px;
+  form {
+    margin-left: 100px;
   }
 
 
     .button {
-      justify-content: center;
+       margin-left: 100px;
     }
   </style>
 
-<main>
-
-
-<h3>注文情報入力</h3>
+<h3 style = "margin-left: 100px;">注文情報入力</h3>
 <%= form_with(model: @order, url: customers_orders_confirm_path(@order),method: :post) do |f| %>
 
    <strong><p>支払い方法</p></strong>
-    <%= f.radio_button :payment_method, :credit_card, checked: true %>
+    <%= f.radio_button :payment_method, :credit_card %>
     <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], {value: :credit_card} %>
     <br>
     <%= f.radio_button :payment_method, :transfer %>
@@ -63,9 +61,6 @@
 
   <%= f.submit '  確認画面へ進む  ' ,class: "btn btn-primary" %>
 </div>
-
-
 <% end %>
-</main>
 
 

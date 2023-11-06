@@ -2,24 +2,40 @@
 <body>
 
   <header>
-    <% if customer_signed_in? %>
-        <%= link_to "マイページ", customers_current_customer_path, class: 'btn btn-default' %>
-    <% else %>
-    　　<%= link_to "About", about_path , class: 'btn btn-default' %>
-    <% end %>
-
-        <%= link_to "商品一覧", customer_items_path , class: 'btn btn-default' %>
+    <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+  　</div>
+        <%= link_to "About", about_path , class: 'btn btn-default' %>
+        <%= link_to "商品一覧", customer_items_path, class: 'btn btn-default' %>
         <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-default' %>
-         <% if customer_signed_in? %>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete,class: 'btn btn-default' %>
-        <% else %>
         <%= link_to "ログイン", new_customer_session_path , class: 'btn btn-default' %>
-        <% end %>
   </header>
+  
+  <style>
+    
+  .logo,
+  .header{
+  	 display: inline-block;
+  }
+  
+  .logo {
+  	margin-right: 700px;
+  }
+ 
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+  
+  </style>
 
   <main>
-    <h2>About</h2>
-    <p>
+    <h2 style ="display: inline-block; text-align: center; width: 100%;">About</h2>
+    <p style ="display: inline-block; text-align: center; width: 100%;">
       ながのCAKEは全国発送可能なケーキ屋さんです。</br>
       お子様からお年寄りの方までお召し上がりいただけるよう、</br>
       様々なバリエーションをご用意しております。</br>

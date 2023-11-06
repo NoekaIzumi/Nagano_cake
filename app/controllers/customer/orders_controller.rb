@@ -53,7 +53,7 @@ class Customer::OrdersController < ApplicationController
     @customer = current_customer
     @orders = current_customer.orders.all
     @order_items = OrderItem.where(order_id: @orders.pluck(:id))
-    
+
   end
 
   def show

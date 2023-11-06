@@ -13,8 +13,9 @@
   </header>
 
   <style>
-  
-  div {
+
+  .logo,
+  .header{
   	 display: inline-block;
   }
 
@@ -29,36 +30,35 @@
   margin-bottom: 60px;
   }
 
+  .order-tables{
+    display: flex;
+  }
+
+  div {
+    display: block;
+  }
+
   table {
     margin-left:30px;
     margin-bottom: 30px;
-    border:1px solid;
+    margin-top:10px;
   }
-  
-  .tr{
-    border:1px solid;
+
+  th,td{
+    padding: 10px;
   }
 
 
-.table.order-table th,
-.table.order-table td {
-  width: auto;
-  display: table-cell;
-}
-    
-    table.tr
-    table.table th,
-    table.table td{
-    　border:1px solid;
-    }
-    
-  
 </style>
 
     <h5 style = "margin-left:100px">注文履歴詳細</h5>
-    
+
+    <div class = "order-tables">
     <table class = "order-table">
-      <P style = "margin-left:30px"><strong>注文情報</strong></P>
+      <tr>
+        <th style="border-width: 0px; border: none;"><strong>注文情報</strong></th>
+　　　　<td style="border-width: 0px; border: none;"></td>
+      </tr>
       <tr>
        <%= form_with model: [:customer,@order], local:true do |f| %>
         <th style= "border: 1px solid;">注文日&emsp;&emsp;&emsp;&emsp;</th>
@@ -74,11 +74,12 @@
        <% end %>
       </tr>
     </table>
-  </a>
-  
-  <a>
+
     <table class = "fee">
-      <p style = "margin-left:30px"><strong>請求情報</strong></p>
+      <tr>
+        <th style="border-width: 0px; border: none;"><strong>請求情報</strong></th>
+　　　　<td style="border-width: 0px; border: none;"></td>
+      </tr>
   　<tr>
       <th style= "border: 1px solid;">商品合計&emsp;&emsp;</th>
       <td style= "border: 1px solid;">
@@ -100,11 +101,11 @@
       <td style= "border: 1px solid;"><%= @total_amount %></td>
     </tr>
     </table>
-    </a>
-    
+    </div>
+
+    <strong style ="margin-left:30px;">注文内容</strong>
     <table class = "order-item">
-     <tr style= "border: 1px solid;">
-        <p style = "margin-left:30px"><strong>注文内容</strong></p>
+      <tr style= "border: 1px solid;">
       <thead>
        <th style= "border: 1px solid;">商品</th>
        <th style= "border: 1px solid;">単価(税込)&emsp;&emsp;</th>
@@ -115,8 +116,8 @@
       <tr>
       <tbody>
       <% @order_items.each do |order_item| %>
-        <tr>
-          <td style= "border: 1px solid;"><%= order_item.item.name %>&emsp;&emsp;</td>
+        <tr style = "border: 1px solid;">
+          <td style= "padding-right:100px;"><%= order_item.item.name %>&emsp;&emsp;</td>
           <td style= "border: 1px solid;"><%= order_item.price %>&emsp;&emsp;</td>
           <td style= "border: 1px solid;"><%= order_item.quantity %></td>
           <td style= "border: 1px solid;"><%= order_item.price * order_item.quantity %></td>

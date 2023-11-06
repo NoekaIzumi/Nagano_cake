@@ -1,7 +1,8 @@
 class Customer::ItemsController < ApplicationController
 
   def index
-    @items = Item.page(params[:page]).per(8)
+    @items = Item.page(params[:page]).per(8).order(created_at: :desc)
+    @total_count = Item.count
     if customer_signed_in?
        @customer = Customer.find(current_customer.id)
     end

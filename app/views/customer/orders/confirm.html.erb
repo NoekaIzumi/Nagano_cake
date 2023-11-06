@@ -15,7 +15,8 @@
 
   <style>
 
-  div {
+  .logo,
+  .header{
   	 display: inline-block;
   }
 
@@ -24,11 +25,12 @@
   }
 
 
-  .header {
+  header.header {
   padding-right : 20px;
   margin-top: 20px;
   margin-bottom: 60px;
   }
+
 
 
   .title{
@@ -37,38 +39,36 @@
 
   .container{
     display: flex;
+    justify-content: space-between;
+    width:900px;
+    margin-left: 0;
+    margin-right:0;
   }
 
 
-  .main-table{
-    margin-right:50px;
-  }
-
-  .confirm{
-    margin-left:100px;
-  }
-  
   .table thead th {
    border: 1px solid;
   }
-  
+
   table.table,
   table th,
   table td {
     border: 1px solid;
-    
   }
 
-    .table.row th,
-    .table.row td{
+  table.row {
+    margin-left: 30px;
+  }
 
-      width:100%;
-      display:block;
-    }
-    
+  table.row th{
+    padding: 10px;
+  }
+
     .button {
-      justify-content: center;
+    display: flex;
+    margin-left:400px;
     }
+
 
   </style>
 <div class = "main">
@@ -104,7 +104,6 @@
       </table>
     </div>
 
-    <div class= "sub-table">
       <table class = "row">
         <tr>
           <th>送料&emsp;&emsp;</th>
@@ -122,21 +121,20 @@
         </tr>
 
       </table>
-    </div>
   </div>
 
 
 
     <div class = "confirm">
-      <a><strong>支払い方法</strong></a>
+      <a style = "margin-left: 30px;"><strong>支払い方法</strong></a>
       <% if @selected_payment_method == "credit_card" %>
       &nbsp;クレジットカード
     　<% else %>
       銀行振込
       <% end %></br>
-      <a><strong>お届け先</strong></a>
+      <a style = "margin-left: 30px;"><strong>お届け先</strong></a>
       <a>&emsp;&nbsp;<%=@order.address %></a></br>
-      &emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<%=@order.name %>
+      <a style = "margin-left: 30px;">&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<%=@order.name %></a>
     </div>
 
 

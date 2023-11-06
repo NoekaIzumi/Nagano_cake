@@ -20,7 +20,7 @@
   </header>
 
 
-<h2>商品一覧(全×件)</h2>
+<h2>商品一覧(全<%= @total_count %>件)</h2>
 
 <style>
 
@@ -77,7 +77,7 @@
             <%= item.name %>
           </div>
           <div class="item-price">
-            ¥ <%= item.price %>
+            ¥ <%= item.with_tax_price %>
           </div>
         </div>
       <% end %>
