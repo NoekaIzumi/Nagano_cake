@@ -2,7 +2,7 @@ class Admin::HomesController < ApplicationController
 
   def top
    if admin_signed_in?
-    @orders = Order.all
+    @orders = Order.page(params[:page])
     @order_items = OrderItem.where(order_id: @orders.pluck(:id))
    else
     redirect_to new_admin_session_path

@@ -1,20 +1,53 @@
  <header>
 
-        <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
-        <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
-        <%= link_to "注文一覧", admin_path, class: 'btn btn-default' %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+
+         <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+         </div>
+  	     <div class = "header">
+          <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+          <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+          <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+        </div>
   </header>
+
+  <style>
+
+
+  .logo,
+  .header{
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+  .table {
+    width:auto;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+  .button {
+   margin-left: 200px;
+  }
+
+  </style>
 
 
 
 <div class = "main">
-  <div class = "title">
-  </br>
-  <h3><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
-  </br>
-  </div>
 <div class = "container">
+   <h3 style= "margin-left:15px;"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h3>
 <div class = "table">
  <%= form_for @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
   <table class="table">
@@ -62,8 +95,10 @@
   </div></td>
     </tr>
   </table>
-  <%= f.submit "  変更を保存  ",class: "btn btn-success" %>
-<% end %>
+ <div class = "button">
+   <%= f.submit "  変更を保存  ",class: "btn btn-success" %>
+   <% end %>
+ </div>
 </div>
 </div>
 </div>

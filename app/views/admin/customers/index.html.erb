@@ -1,9 +1,36 @@
   <header>
-        <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
-        <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
-        <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+         <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+         </div>
+  	     <div class = "header">
+          <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+          <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+          <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+        </div>
   </header>
+  
+   <style>
+
+  .logo,
+  .header{
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+  
+  </style>
 
 <div class = "container">
 <div class = "title">

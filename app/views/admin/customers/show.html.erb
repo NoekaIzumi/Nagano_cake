@@ -1,14 +1,41 @@
  <header>
 
-        <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
-        <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
-        <%= link_to "注文一覧", admin_path, class: 'btn btn-default' %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
-  </header>
+         <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+         </div>
+  	     <div class = "header">
+          <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+          <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+          <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+        </div>
 
 <style>
-  .main{flex
+
+  .logo,
+  .header{
+  	 display: inline-block;
   }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+  .main{
+    width:890px;
+    padding-bottom: 30px;
+    margin: auto;
+  }
+
 
   .title{
     margin-left:20px;
@@ -17,11 +44,15 @@
   .container{
     justify-content:start;
     margin-left:0;
-  }
+
+
+    }
 
   .button{
-    justify-content:center;
+   display: flex;
   }
+
+
 </style>
 
 <div class = "main">
@@ -31,11 +62,10 @@
   </br>
   </div>
 <div class = "container">
-<div class = "table">
  <table class= "table">
   <tr><th>会員ID</th><td><%= @customer.id %></td></tr>
-  <tr><th>氏名</th><td><%= @customer.last_name %><%= @customer.first_name %></td></tr>
-  <tr><th>フリガナ</th><td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td></tr>
+  <tr><th>氏名</th><td><%= @customer.last_name %>&emsp;<%= @customer.first_name %></td></tr>
+  <tr><th>フリガナ</th><td><%= @customer.last_name_kana %>&emsp;<%= @customer.first_name_kana %></td></tr>
   <tr><th>郵便番号</th><td><%= @customer.postal_code %></td></tr>
   <tr><th>住所</th><td><%= @customer.address %></td></tr>
   <tr><th>電話番号</th><td><%= @customer.telephone_number %></td></tr>
@@ -44,10 +74,14 @@
  </table>
 </div>
 
- <div class = "button">
-         <%= link_to  '  編集する  ', edit_admin_customer_path, class: "btn btn-success" %>
 
+ <div class = "button">
+  <div style= "margin-left: 120px;">
+         <%= link_to  '  編集する  ', edit_admin_customer_path, class: "btn btn-success" %>
+  </div>
+  <div style = "margin-left: 50px;">
          <%= link_to  '  注文履歴一覧を見る  ', admin_path, class: "btn btn-primary" %>
- </div>
+  </div>
+</div>
 </div>
 </div>

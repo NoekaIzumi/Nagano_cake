@@ -2,26 +2,94 @@
 
   <header>
 
-        <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
-        <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
-        <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
-        <% if admin_signed_in? %>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
-        <% else %>
-        <%= link_to "ログイン", new_admin_session_path , class: 'btn btn-default' %>
-        <% end %>
+         <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+         </div>
+  	     <div class = "header">
+          <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+          <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+          <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+        </div>
+
   </header>
 
-  <main>
-    <h2>注文履歴詳細</h2>
-    <strong><p>購入者</p></strong><%= @order.name %>
-    <strong><p>注文日</p></strong><%= @order.created_at.strftime("%Y-%m-%d") %>
-    <strong><p>配送先</p></strong><%= @order.address %>
-    <strong><p>支払い方法</p></strong><%= @order.payment_method_i18n%>
+  <style>
 
+
+  .logo,
+  .header{
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+  main {
+    margin: auto;
+  }
+
+  table.order-table{
+    margin:30px;
+  }
+
+  table.order-table th{
+     padding: 10px;
+  }
+
+  div.table {
+    display: flex;
+  }
+
+  table.order-item-table{
+    margin: 30px;
+  }
+
+  table.fee-table{
+     margin-top:100px;
+     padding: 10px;
+  }
+
+  </style>
+
+  <main>
+    <h3 style= "margin-left:100px;">注文履歴詳細</h3>
+
+    <table class = "order-table">
+      <tr>
+        <th>購入者</th>
+        <td><%= @order.name %></td>
+      </tr>
+
+      <tr>
+        <th>注文日</th>
+        <td><%= @order.created_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+
+      <tr>
+        <th>配送先</th>
+        <td><%= @order.address %></br><%= @order.name %></td>
+      </tr>
+
+      <tr>
+        <th>支払い方法</th>
+        <td><%= @order.payment_method_i18n%></td>
+      </tr>
+
+    </table>
 
     <div class = "table">
-      <table class= "table">
+      <table class= "order-item-table">
         <thead>
           <tr>
             <th>商品名</th>
@@ -30,7 +98,7 @@
             <th>小計</th>
           </tr>
         </thead>
-        
+
         <tbody>
         <% @order_items.each do |order_item| %>
           <tr>
@@ -42,10 +110,23 @@
         <% end %>
         </tbody>
       </table>
-    </div>
 
-    <strong><p>商品合計</p></strong>
-    <%= @order.total_amount - @shipping_fee %>円
-    <strong><p>送料</p></strong><%= @shipping_fee %>円
-    <strong><p>請求金額合計</p></strong><%= @order.total_amount %>円
+
+    <table class = "fee-table">
+      <tr>
+        <th>商品合計</th>
+        <td><%= @order.total_amount - @shipping_fee %>円</td>
+      </tr>
+
+      <tr>
+        <th>送料</th>
+        <td><%= @shipping_fee %>円</td>
+      </tr>
+
+      <tr>
+        <th>請求金額合計</th>
+        <td><strong><%= @order.total_amount %>円</strong></td>
+      </tr>
+    </table>
+    </div>
   </main>

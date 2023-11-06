@@ -1,20 +1,78 @@
 <script src="https://kit.fontawesome.com/153870c081.js" crossorigin="anonymous"></script>
 <body>
         <header>
-            <%= link_to "商品一覧", admin_items_path, class: 'btn btn-default' %>
-            <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-default' %>
-            <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-default' %>
-
+         <div class = "logo">
+            <%= link_to root_path do %>
+              <%= image_tag 'logo.png', size: "100x100" %>
+            <% end %>
+         </div>
+  	     <div class = "header">
+          <%= link_to "商品一覧", admin_items_path , class: 'btn btn-default' %>
+          <%= link_to "会員一覧",  admin_customers_path , class: 'btn btn-default' %>
+          <%= link_to "注文履歴一覧", admin_path, class: 'btn btn-default' %>
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete,class: 'btn btn-default' %>
+        </div>
 
         </henader>
 
+
+ <style>
+
+  .logo,
+  .header{
+  	 display: inline-block;
+  }
+
+  .logo {
+  	margin-right: 700px;
+  }
+
+
+  .header {
+  padding-right : 20px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  }
+
+  main {
+    width:890px;
+    margin: auto;
+  }
+
+  .button{
+    display: flex;
+    width: 100%;
+  }
+
+  table {
+    width: 80%;
+  }
+
+  .table {
+    width: 80%;
+
+  }
+
+  .table td,
+  .table th {
+    padding:10px;
+
+  }
+
+
+ </style>
+
+
+
     <main>
-      <h2>商品一覧</h2>
+      <div class = "button">
+      <h3 style= "margin-right:580px">商品一覧</h3>
+
 
       <%= link_to new_admin_item_path, class: 'btn btn-default' do %>
        <i class="fa-solid fa-circle-plus"></i>
       <% end %>
+     </div>
 
       <table class = "table">
         <thead>
